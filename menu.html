@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú - AKYRA Sushi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e31837;
+            --secondary-color: #333;
+            --accent-color: #f8f8f8;
+            --text-color: #222;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 60px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+        
+        .menu-category h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .menu-item {
+            background-color: var(--accent-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+        
+        .menu-item-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .menu-item-content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .menu-item-content .price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 0.5rem;
+        }
+        
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con navegación -->
+    <header>
+        <div class="container header-content">
+            <img src="images/logoakyra.png" alt="AKYRA Sushi" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="menu.html">Menú</a></li>
+                    <li><a href="index.html#ubicaciones">Ubicaciones</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección de Menú -->
+    <section id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Menú Completo</h2>
+                <p>Todas nuestras deliciosas opciones</p>
+            </div>
+
+            <!-- Porciones -->
+            <div class="menu-category">
+                <h3>Porciones</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="images/menu9.jpg" alt="Sushi porción">
+                        <div class="menu-item-content">
+                            <h4>+10 Piezas</h4>
+                            <p>Deliciosa selección de 10 piezas de sushi</p>
+                            <span class="price">$3.490</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20la%20porción%20de%2010%20piezas%20de%20sushi" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/menu1.webp" alt="Sushi porción">
+                        <div class="menu-item-content">
+                            <h4>+20 Piezas</h4>
+                            <p>Deliciosa selección de 20 piezas de sushi</p>
+                            <span class="price">$6.690</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20la%20porción%20de%2020%20piezas%20de%20sushi" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/menu8.jpg" alt="Sushi porción">
+                        <div class="menu-item-content">
+                            <h4>+30 Piezas</h4>
+                            <p>Deliciosa selección de 30 piezas de sushi</p>
+                            <span class="price">$9.990</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20la%20porción%20de%2030%20piezas%20de%20sushi" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/menu10.jpg" alt="Sushi porción">
+                        <div class="menu-item-content">
+                            <h4>+40 Piezas</h4>
+                            <p>Deliciosa selección de 40 piezas de sushi</p>
+                            <span class="price">$12.390</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20la%20porción%20de%2040%20piezas%20de%20sushi" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/menu3.webp" alt="Sushi porción">
+                        <div class="menu-item-content">
+                            <h4>+50 Piezas</h4>
+                            <p>Deliciosa selección de 50 piezas de sushi</p>
+                            <span class="price">$15.390</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20la%20porción%20de%2050%20piezas%20de%20sushi" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/menu4.webp" alt="Sushi porción">
+                        <div class="menu-item-content">
+                            <h4>+60 Piezas</h4>
+                            <p>Deliciosa selección de 60 piezas de sushi</p>
+                            <span class="price">$17.990</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20la%20porción%20de%2060%20piezas%20de%20sushi" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/menu7.jpg" alt="Sushi porción">
+                        <div class="menu-item-content">
+                            <h4>+70 Piezas</h4>
+                            <p>Deliciosa selección de 70 piezas de sushi</p>
+                            <span class="price">$21.490</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20la%20porción%20de%2070%20piezas%20de%20sushi" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/menu10.jpg" alt="Sushi porción">
+                        <div class="menu-item-content">
+                            <h4>+80 Piezas</h4>
+                            <p>Deliciosa selección de 80 piezas de sushi</p>
+                            <span class="price">$23.490</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20la%20porción%20de%2080%20piezas%20de%20sushi" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/menu6.jpg" alt="Sushi porción">
+                        <div class="menu-item-content">
+                            <h4>+90 Piezas</h4>
+                            <p>Deliciosa selección de 90 piezas de sushi</p>
+                            <span class="price">$25.990</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20la%20porción%20de%2090%20piezas%20de%20sushi" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/menu6.jpg" alt="Sushi porción">
+                        <div class="menu-item-content">
+                            <h4>+100 Piezas</h4>
+                            <p>Deliciosa selección de 100 piezas de sushi</p>
+                            <span class="price">$28.490</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20la%20porción%20de%20100%20piezas%20de%20sushi" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hand Rolls -->
+            <div class="menu-category">
+                <h3>Hand Rolls</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="images/handrollbebida.webp" alt="Hand Roll">
+                        <div class="menu-item-content">
+                            <h4>2 Hand Rolls + Bebida</h4>
+                            <p>Pollo, kanikama, palmito, pimentón, champiñón. Todos incluyen queso crema y cebollín</p>
+                            <span class="price">$6.000</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20el%20combo%202%20Hand%20Rolls%20+%20Bebida" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/handpollo.webp" alt="Hand Roll Pollo">
+                        <div class="menu-item-content">
+                            <h4>Hand Roll Pollo</h4>
+                            <p>Incluye queso crema y cebollín</p>
+                            <span class="price">$3.000</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20un%20Hand%20Roll%20de%20Pollo" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/handpimenton.webp" alt="Hand Roll Pimentón">
+                        <div class="menu-item-content">
+                            <h4>Hand Roll Pimentón</h4>
+                            <p>Incluye queso crema y cebollín</p>
+                            <span class="price">$3.000</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20un%20Hand%20Roll%20de%20Pimentón" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/handkanikama.webp" alt="Hand Roll Kanikama">
+                        <div class="menu-item-content">
+                            <h4>Hand Roll Kanikama</h4>
+                            <p>Incluye queso crema y cebollín</p>
+                            <span class="price">$3.000</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20un%20Hand%20Roll%20de%20Kanikama" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/handchampi.webp" alt="Hand Roll Champiñón">
+                        <div class="menu-item-content">
+                            <h4>Hand Roll Champiñón</h4>
+                            <p>Incluye queso crema y cebollín</p>
+                            <span class="price">$3.000</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20un%20Hand%20Roll%20de%20Champiñón" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/handpalmito.webp" alt="Hand Roll Palmito">
+                        <div class="menu-item-content">
+                            <h4>Hand Roll Palmito</h4>
+                            <p>Incluye queso crema y cebollín</p>
+                            <span class="price">$3.000</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20un%20Hand%20Roll%20de%20Palmito" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/handcamaron.webp" alt="Hand Roll Camarón">
+                        <div class="menu-item-content">
+                            <h4>Hand Roll Camarón</h4>
+                            <p>Incluye queso crema y cebollín</p>
+                            <span class="price">$3.290</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20un%20Hand%20Roll%20de%20Camarón" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/handsalmon.webp" alt="Hand Roll Salmón">
+                        <div class="menu-item-content">
+                            <h4>Hand Roll Salmón Ahumado</h4>
+                            <p>Incluye queso crema y cebollín</p>
+                            <span class="price">$3.290</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20un%20Hand%20Roll%20de%20Salmón%20Ahumado" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gyosas -->
+            <div class="menu-category">
+                <h3>Gyosas</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="images/gyozascerdo.jpg" alt="Gyosas">
+                        <div class="menu-item-content">
+                            <h4>Gyosas de Cerdo</h4>
+                            <p>Deliciosas gyosas rellenas de cerdo</p>
+                            <span class="price">$3.490</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesan%20Gyosas%20de%20Cerdo" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/gyozaspollo.webp" alt="Gyosas">
+                        <div class="menu-item-content">
+                            <h4>Gyosas de Pollo</h4>
+                            <p>Deliciosas gyosas rellenas de pollo</p>
+                            <span class="price">$3.490</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesan%20Gyosas%20de%20Pollo" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/Gyosasverduras.jpeg" alt="Gyosas">
+                        <div class="menu-item-content">
+                            <h4>Gyosas de Verdura</h4>
+                            <p>Deliciosas gyosas rellenas de verdura</p>
+                            <span class="price">$3.490</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesan%20Gyosas%20de%20Verdura" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="images/gyozascamaron.jpg" alt="Gyosas">
+                        <div class="menu-item-content">
+                            <h4>Gyosas de Camarón</h4>
+                            <p>Deliciosas gyosas rellenas de camarón</p>
+                            <span class="price">$3.990</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesan%20Gyosas%20de%20Camarón" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extra Promo -->
+            <div class="menu-category">
+                <h3>Extra Promo</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="images/papas.jpg" alt="Extra Promo">
+                        <div class="menu-item-content">
+                            <h4>Papas Fritas + Tiritas de Pollo Apanado + Bebida</h4>
+                            <p>Combo especial para acompañar tu sushi</p>
+                            <span class="price">$4.490</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20el%20Extra%20Promo%20(Papas%20Fritas%20+%20Tiritas%20de%20Pollo%20Apanado%20+%20Bebida)" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roll Especial -->
+            <div class="menu-category">
+                <h3>Roll Especial</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="images/roll.jpg" alt="Roll Especial">
+                        <div class="menu-item-content">
+                            <h4>Roll Especial</h4>
+                            <p>Pregunta por nuestro roll especial. Disponible con y sin arroz</p>
+                            <span class="price">$5.990</span>
+                            <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20interesa%20saber%20más%20sobre%20el%20Roll%20Especial" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/56952325722" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <img src="images/logoakyra.jpg" alt="AKYRA Sushi" class="footer-logo">
+            <p>&copy; 2025 AKYRA Sushi - Todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+</html>
