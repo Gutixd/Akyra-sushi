@@ -33,6 +33,12 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out; /* Añadida transición para el efecto */
+        }
+        
+        /* Clase para ocultar el header al hacer scroll hacia abajo */
+        header.hide {
+            transform: translateY(-100%);
         }
         
         .container {
@@ -298,7 +304,7 @@
 </head>
 <body>
     <!-- Header con navegación -->
-    <header>
+    <header id="main-header">
         <div class="container header-content">
             <img src="images/logoakyra.png" alt="AKYRA Sushi" class="logo">
             <nav>
@@ -396,6 +402,7 @@
     </footer>
 
     <script>
+        // JavaScript para el formulario de suscripción
         document.getElementById('subscribeForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -449,6 +456,55 @@
                 setTimeout(() => {
                     messageDiv.style.display = 'none';
                 }, 5000);
+            }
+        });
+
+        // JavaScript para el comportamiento del header en móviles
+        let lastScrollTop = 0;
+        const header = document.getElementById('main-header');
+        const scrollThreshold = 100; // Umbral de scroll para activar la animación
+        
+        function handleScroll() {
+            // Solo aplicar en dispositivos móviles (ancho menor a 768px)
+            if (window.innerWidth <= 768) {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+                    // Scroll hacia abajo - ocultar header
+                    header.classList.add('hide');
+                } else {
+                    // Scroll hacia arriba - mostrar header
+                    header.classList.remove('hide');
+                }
+                
+                lastScrollTop = scrollTop;
+            } else {
+                // En desktop, asegurarse de que el header esté visible
+                header.classList.remove('hide');
+            }
+        }
+        
+        // Agregar evento de scroll con throttling para mejor rendimiento
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        // Asegurarse de que el header esté visible al cargar la página
+        window.addEventListener('load', function() {
+            header.classList.remove('hide');
+        });
+        
+        // También actualizar al cambiar el tamaño de la ventana
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                header.classList.remove('hide');
             }
         });
     </script>
