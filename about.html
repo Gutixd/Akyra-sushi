@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - AKYRA Sushi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/about.css">
+</head>
+<body>
+    <!-- Header con navegación -->
+    <header id="main-header">
+        <div class="container header-content">
+            <img src="images/logoakyra.png" alt="AKYRA Sushi" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="menu.html">Menú</a></li>
+                    <li><a href="about.html">Sobre Nosotros</a></li>
+                    <li><a href="index.html#ubicaciones">Ubicaciones</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección Sobre Nosotros -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Nosotros</h2>
+                <p>Conoce la historia detrás de AKYRA Sushi</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1150&q=80" alt="Interior de AKYRA Sushi">
+                </div>
+                
+                <div class="about-text">
+                    <h3>Nuestra Historia</h3>
+                    <p>AKYRA Sushi nació en el corazón de San Miguel con la pasión por ofrecer sushi de la más alta calidad, preparado con ingredientes frescos y técnicas tradicionales japonesas adaptadas al paladar chileno.</p>
+                    <p>Desde nuestros inicios, nos hemos enfocado en crear experiencias culinarias memorables, combinando sabores auténticos con un toque de innovación que nos distingue.</p>
+                    <p>Nuestro nombre "AKYRA" representa la esencia de nuestra propuesta: autenticidad, calidad y una experiencia gastronómica que perdura en el tiempo.</p>
+                </div>
+            </div>
+
+            <div class="values">
+                <div class="value-card">
+                    <i class="fas fa-fish"></i>
+                    <h4>Frescura Garantizada</h4>
+                    <p>Seleccionamos los ingredientes más frescos cada día para garantizar la máxima calidad en cada plato.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h4>Hecho con Pasión</h4>
+                    <p>Cada pieza de sushi es preparada con dedicación y atención a los detalles que marcan la diferencia.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Para la Comunidad</h4>
+                    <p>Nos enorgullece ser parte de San Miguel y servir a nuestra comunidad con los mejores sabores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Suscripción -->
+    <section class="subscription-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Únete a Nuestra Comunidad</h2>
+                <p>Suscríbete para recibir promociones exclusivas y novedades</p>
+            </div>
+            
+            <div class="subscription-form">
+                <h3>Promociones AKYRA Sushi</h3>
+                <form id="subscribeForm">
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nombre (opcional)</label>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre">
+                    </div>
+                    <button type="submit" class="subscribe-btn">Suscribirme</button>
+                </form>
+                <div id="subscriptionMessage"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/56952325722?text=¡Hola!%20Me%20gustaría%20hacer%20una%20consulta" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <img src="images/logoakyra.png" alt="AKYRA Sushi" class="footer-logo">
+            <p>&copy; 2025 AKYRA Sushi - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/about.js"></script>
+</body>
+</html>

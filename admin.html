@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - AKYRA Sushi</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #e31837; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #e31837; color: white; }
+        tr:hover { background-color: #f5f5f5; }
+        .stats { display: flex; justify-content: space-around; margin: 20px 0; }
+        .stat-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; width: 30%; }
+        .btn { padding: 10px 15px; background: #e31837; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .btn:hover { background: #c5112f; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Panel de Administración - Suscriptores</h1>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Suscriptores</h3>
+                <p id="totalCount">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Suscriptores Hoy</h3>
+                <p id="todayCount">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Suscriptores Activos</h3>
+                <p id="activeCount">0</p>
+            </div>
+        </div>
+        
+        <button class="btn" onclick="loadSubscribers()">Actualizar Datos</button>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Nombre</th>
+                    <th>Fecha Suscripción</th>
+                    <th>Activo</th>
+                </tr>
+            </thead>
+            <tbody id="subscribersTable">
+                <!-- Los datos se cargarán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function loadSubscribers() {
+            try {
+                const response = await fetch('http://localhost:8080/api/subscribe');
+                const subscribers = await response.json();
+                
+                // Actualizar tabla
+                const tableBody = document.getElementById('subscribersTable');
+                tableBody.innerHTML = '';
+                
+                subscribers.forEach(sub => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${sub.id}</td>
+                        <td>${sub.email}</td>
+                        <td>${sub.name || 'N/A'}</td>
+                        <td>${new Date(sub.subscriptionDate).toLocaleString()}</td>
+                        <td>${sub.active ? 'Sí' : 'No'}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+                
+                // Actualizar estadísticas
+                document.getElementById('totalCount').textContent = subscribers.length;
+                
+                const today = new Date().toLocaleDateString();
+                const todaySubs = subscribers.filter(sub => 
+                    new Date(sub.subscriptionDate).toLocaleDateString() === today
+                ).length;
+                document.getElementById('todayCount').textContent = todaySubs;
+                
+                const activeSubs = subscribers.filter(sub => sub.active).length;
+                document.getElementById('activeCount').textContent = activeSubs;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al cargar los datos: ' + error.message);
+            }
+        }
+        
+        // Cargar datos al iniciar
+        document.addEventListener('DOMContentLoaded', loadSubscribers);
+    </script>
+</body>
+</html>
